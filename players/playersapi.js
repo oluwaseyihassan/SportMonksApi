@@ -7,7 +7,7 @@ const API_BASE_URL = "https://api.sportmonks.com/v3/football";
 
 async function makeApiRequest(endpoint, queryParams = {}) {
   queryParams.api_token = process.env.API_TOKEN;
-
+  
 
   const queryString = Object.entries(queryParams)
     .filter(
