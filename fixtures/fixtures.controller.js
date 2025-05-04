@@ -239,6 +239,7 @@ export const getFixturesByDateRangeForTeam = async (req, res) => {
 export const getFixtureByHeadToHead = async (req, res) => {
   try {
     const { team1_id, team2_id } = req.params;
+    const { includes, filters } = req.query;
 
     if (
       !team1_id ||
@@ -252,7 +253,12 @@ export const getFixtureByHeadToHead = async (req, res) => {
       });
     }
 
-    const fixtures = await getFixtureByHeadToHeadFromSM(team1_id, team2_id);
+    const fixtures = await getFixtureByHeadToHeadFromSM(
+      team1_id,
+      team2_id,
+      includes,
+      filters
+    );
 
     if (!fixtures || !fixtures.data || fixtures.data.length === 0) {
       return res.status(404).json({

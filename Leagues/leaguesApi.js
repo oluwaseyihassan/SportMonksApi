@@ -13,7 +13,7 @@ async function makeApiRequest(endpoint, queryParams = {}) {
     .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
     .join("&");
 
-  const url = `${API_BASE_URL}${endpoint}?${queryString}`;
+  const url = `${API_BASE_URL}${endpoint}?${queryString}&timezone=Europe/London`;
 
   const response = await fetch(url);
 

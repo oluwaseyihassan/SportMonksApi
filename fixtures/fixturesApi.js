@@ -7,7 +7,6 @@ const API_BASE_URL = "https://api.sportmonks.com/v3/football";
 async function makeApiRequest(endpoint, queryParams = {}) {
   queryParams.api_token = process.env.API_TOKEN;
 
-
   const queryString = Object.entries(queryParams)
     .filter(
       ([_, value]) => value !== undefined && value !== null && value !== ""
@@ -15,7 +14,7 @@ async function makeApiRequest(endpoint, queryParams = {}) {
     .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
     .join("&");
 
-  const url = `${API_BASE_URL}${endpoint}?${queryString}`;
+  const url = `${API_BASE_URL}${endpoint}?${queryString}&timezone=Europe/London`;
 
   const response = await fetch(url);
 
@@ -35,13 +34,12 @@ export const getFixturesFromSM = async () => {
   }
 };
 
-export const getFixturesByIdFromSM = async (
-  fixture_id,
-  includes,
-  filters
-) => {
+export const getFixturesByIdFromSM = async (fixture_id, includes, filters) => {
   try {
-    return await makeApiRequest(`/fixtures/${fixture_id}`, { includes, filters });
+    return await makeApiRequest(`/fixtures/${fixture_id}`, {
+      includes,
+      filters,
+    });
   } catch (error) {
     console.error(`Failed to fetch fixture ID ${fixture_id}:`, error);
     throw error;
@@ -99,10 +97,16 @@ export const getFixturesByDateRangeForTeamFromSM = async (
   }
 };
 
-export const getFixtureByHeadToHeadFromSM = async (team_id1, team_id2) => {
+export const getFixtureByHeadToHeadFromSM = async (
+  team_id1,
+  team_id2,
+  includes,
+  filters
+) => {
   try {
     return await makeApiRequest(
-      `/fixtures/head-to-head/${team_id1}/${team_id2}`
+      `/fixtures/head-to-head/${team_id1}/${team_id2}`,
+      { includes, filters }
     );
   } catch (error) {
     console.error(
