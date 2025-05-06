@@ -128,7 +128,7 @@ export const getLeaguesByName = async (req, res) => {
 
 export const getLeaguesByFixtureDate = async (req, res) => {
   const { fixture_date } = req.params;
-  const { includes, filters,page,per_page } = req.query;
+  const { includes, filters, page, per_page } = req.query;
   try {
     const leagues = await getLeaguesByFixtureDateFromSM(
       fixture_date,

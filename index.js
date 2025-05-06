@@ -5,6 +5,7 @@ import playersRoute from "./players/playersRoute.js";
 import fixturesRoute from "./fixtures/fixturesRoute.js";
 import leaguesRoute from "./Leagues/leaguesRoute.js";
 import standingsRoute from "./standings/standingsRoute.js";
+import topScorersRoute from "./topscorers/topScorersRoute.js";
 
 configDotenv();
 
@@ -14,8 +15,9 @@ app.use(express.json());
 
 app.use("/api/players", playersRoute);
 app.use("/api/fixtures", fixturesRoute);
-app.use("/api/leagues", leaguesRoute)
+app.use("/api/leagues", leaguesRoute);
 app.use("/api/standings", standingsRoute);
+app.use("/api/topscorers", topScorersRoute);
 
 const PORT = process.env.PORT || 2000;
 

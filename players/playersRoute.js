@@ -4,7 +4,7 @@ import {
   getPlayerById,
   getPlayerByCountryId,
   getPlayersByName,
-  getLatestUpdatedPlayers
+  getLatestUpdatedPlayers,
 } from "./players.controller.js";
 
 const router = Router();

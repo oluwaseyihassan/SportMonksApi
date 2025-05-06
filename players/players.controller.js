@@ -6,7 +6,6 @@ import {
   getLatestUpdatedPlayersFromSM,
 } from "./playersapi.js";
 
-
 export const getPlayers = async (req, res) => {
   try {
     const { page = 1 } = req.query;
@@ -31,7 +30,6 @@ export const getPlayers = async (req, res) => {
     });
   }
 };
-
 
 export const getPlayerById = async (req, res) => {
   try {
@@ -70,7 +68,6 @@ export const getPlayerById = async (req, res) => {
   }
 };
 
-
 export const getPlayerByCountryId = async (req, res) => {
   try {
     const { country_id } = req.params;
@@ -106,7 +103,6 @@ export const getPlayerByCountryId = async (req, res) => {
     });
   }
 };
-
 
 export const getPlayersByName = async (req, res) => {
   try {
@@ -144,7 +140,6 @@ export const getPlayersByName = async (req, res) => {
     });
   }
 };
-
 
 export const getLatestUpdatedPlayers = async (req, res) => {
   try {
