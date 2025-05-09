@@ -6,19 +6,45 @@ import fixturesRoute from "./fixtures/fixturesRoute.js";
 import leaguesRoute from "./Leagues/leaguesRoute.js";
 import standingsRoute from "./standings/standingsRoute.js";
 import topScorersRoute from "./topscorers/topScorersRoute.js";
-import { authenticateApiKey } from "./middleware/authenticateApiKey.js";
+// import { authenticateApiKey } from "./middleware/authenticateApiKey.js";
 
 configDotenv();
 
 const app = express();
+const allowedOrigins = [
+  "https://parascores.vercel.app",
+  "https://player-comparison.vercel.app",
+  "http://localhost:5173", // For development
+];
+
+// Configure CORS with specific options
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps, curl requests)
+      if (!origin) return callback(null, true);
+
+      // Check if the origin is in the allowed list
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg = `Access from origin ${origin} is not allowed`;
+        return callback(new Error(msg), false);
+      }
+
+      return callback(null, true);
+    },
+    credentials: true, // Allow credentials (cookies, authorization headers)
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-API-Key"],
+  })
+);
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/players", authenticateApiKey, playersRoute);
-app.use("/api/fixtures", authenticateApiKey, fixturesRoute);
-app.use("/api/leagues", authenticateApiKey, leaguesRoute);
-app.use("/api/standings", authenticateApiKey, standingsRoute);
-app.use("/api/topscorers", authenticateApiKey, topScorersRoute);
+app.use("/api/players", playersRoute);
+app.use("/api/fixtures", fixturesRoute);
+app.use("/api/leagues", leaguesRoute);
+app.use("/api/standings", standingsRoute);
+app.use("/api/topscorers", topScorersRoute);
 
 const PORT = process.env.PORT || 2000;
 
