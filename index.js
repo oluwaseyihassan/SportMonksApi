@@ -6,6 +6,7 @@ import fixturesRoute from "./fixtures/fixturesRoute.js";
 import leaguesRoute from "./Leagues/leaguesRoute.js";
 import standingsRoute from "./standings/standingsRoute.js";
 import topScorersRoute from "./topscorers/topScorersRoute.js";
+import teamsRoute from "./teams/teamsRoute.js";
 // import { authenticateApiKey } from "./middleware/authenticateApiKey.js";
 
 configDotenv();
@@ -45,6 +46,7 @@ app.use("/api/fixtures", fixturesRoute);
 app.use("/api/leagues", leaguesRoute);
 app.use("/api/standings", standingsRoute);
 app.use("/api/topscorers", topScorersRoute);
+app.use("/api/teams", teamsRoute);
 
 const PORT = process.env.PORT || 2000;
 
