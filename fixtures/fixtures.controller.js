@@ -187,6 +187,7 @@ export const getFixturesByDateRange = async (req, res) => {
 export const getFixturesByDateRangeForTeam = async (req, res) => {
   try {
     const { team_id, start_date, end_date } = req.params;
+    const {includes, filters} = req.query;
 
     if (!team_id || isNaN(parseInt(team_id))) {
       return res.status(400).json({
@@ -210,7 +211,9 @@ export const getFixturesByDateRangeForTeam = async (req, res) => {
     const fixtures = await getFixturesByDateRangeForTeamFromSM(
       team_id,
       start_date,
-      end_date
+      end_date,
+      includes,
+      filters
     );
 
     if (!fixtures || !fixtures.data || fixtures.data.length === 0) {

@@ -82,11 +82,17 @@ export const getFixturesByDateRangeFromSM = async (start_date, end_date) => {
 export const getFixturesByDateRangeForTeamFromSM = async (
   team_id,
   start_date,
-  end_date
+  end_date,
+  includes,
+  filters
 ) => {
   try {
     return await makeApiRequest(
-      `/fixtures/between/${start_date}/${end_date}/${team_id}`
+      `/fixtures/between/${start_date}/${end_date}/${team_id}`,
+      {
+        includes,
+        filters,
+      }
     );
   } catch (error) {
     console.error(
