@@ -15,6 +15,7 @@ const app = express();
 const allowedOrigins = [
   "https://parascores.vercel.app",
   "https://player-comparison.vercel.app",
+  "https://parascores.com",
   "http://localhost:5173", // For development
 ];
 
@@ -40,6 +41,10 @@ app.use(
 );
 app.use(cors());
 app.use(express.json());
+
+app.get('/', (req,res) => {
+  res.send("home")
+})
 
 app.use("/api/players", playersRoute);
 app.use("/api/fixtures", fixturesRoute);
