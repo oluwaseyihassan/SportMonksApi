@@ -15,7 +15,7 @@ const app = express();
 const allowedOrigins = [
   "https://parascores.vercel.app",
   "https://player-comparison.vercel.app",
-  "https://parascores.com",
+  "https://www.parascores.com",
   "http://localhost:5173", // For development
 ];
 
