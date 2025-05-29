@@ -105,12 +105,14 @@ export const getLeaguesByCountryIdFromSM = async (
 export const getLeaguesByNameFromSM = async (
   search_param,
   page,
+  per_page,
   includes,
   filters
 ) => {
   try {
     return await makeApiRequest(`/leagues/search/${search_param}`, {
       page,
+      per_page,
       includes,
       filters,
     });

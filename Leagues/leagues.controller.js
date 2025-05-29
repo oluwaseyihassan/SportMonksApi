@@ -98,10 +98,11 @@ export const getLeaguesByLive = async (req, res) => {
 export const getLeaguesByName = async (req, res) => {
   const { search_param } = req.params;
   try {
-    const { page, includes, filters } = req.query;
+    const { page, per_page, includes, filters } = req.query;
     const leagues = await getLeaguesByNameFromSM(
       search_param,
       page || 1,
+      per_page || 25,
       includes,
       filters
     );
