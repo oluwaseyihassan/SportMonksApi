@@ -17,7 +17,8 @@ const allowedOrigins = [
   "https://parascores.vercel.app",
   "https://player-comparison.vercel.app",
   "https://www.parascores.com",
-  "http://localhost:5173", // For development
+  "http://localhost:5173",
+  "https://season-wrap.vercel.app"
 ];
 
 // Configure CORS with specific options
